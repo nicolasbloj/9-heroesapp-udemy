@@ -31,12 +31,13 @@ export class HeroeComponent {
       }
     });
   }
-  
+
   guardar(): void {
 
     console.log('heroe ', this.heroe);
 
     if (this.id === 'nuevo') {
+
       this._heroesService.nuevoHeroe(this.heroe).subscribe(
         data => {
           console.log('data ', data);
@@ -44,6 +45,7 @@ export class HeroeComponent {
         },
         error => console.error(error)
       );
+
     } else {
       this._heroesService.actualizarHeroe(this.heroe, this.id).subscribe(
         data => {

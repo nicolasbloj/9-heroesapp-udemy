@@ -6,6 +6,7 @@
     <button [routerLink]="['/heroe','nuevo']" class="btn btn-primary" type="button" name="button">
        Nuevo heroe
     </button>
+    <button class="btn btn-outline-danger"> Eliminar Todos </button>
   </div>
 </div>
 
@@ -20,7 +21,7 @@
           <th>Nombre</th>
           <th>Casa</th>
           <th>Bio</th>
-          <th>Opciones</th>
+          <th class="text-right">Opciones</th>
         </tr>
       </thead>
       <tbody>
@@ -28,8 +29,11 @@
           <th>{{ i }}</th>
           <td>{{ heroes[key].nombre }}</td>
           <td>{{ heroes[key].casa }}</td>
-          <td>{{ heroes[key].bio }}</td>
-          <td>{{ key }}</td>
+          <td>{{  key  }}</td>
+          <td class="text-right w230">
+            <button class="btn btn-outline-success" [routerLink]="['/heroe',key]"> Editar </button>
+            <button class="btn btn-outline-danger" (click)="eliminarHeroe(key)"> Eliminar </button>
+          </td>
         </tr>
       </tbody>
     </table>

@@ -51,4 +51,9 @@ export class HeroesService {
     const url = `${this.heroeURL}.json`;
     return this._http.get(url).map(res => res.json());
   }
+
+  eliminarHeroe(key$: string): Observable<any> {
+    const url = `${this.heroeURL}/${key$}.json`;
+    return this._http.delete(url).map(res => res.json());
+  }
 }
