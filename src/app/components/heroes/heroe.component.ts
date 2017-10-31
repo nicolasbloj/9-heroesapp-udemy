@@ -3,14 +3,14 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { HeroesService } from '../../services/heroes.service';
 import { Heroe } from '../../interfaces/heroe.interface';
-import { NgForm } from "@angular/forms/src/forms";
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-heroe',
   templateUrl: './heroe.component.html',
   styles: []
 })
-export class HeroeComponent implements OnInit {
+export class HeroeComponent {
 
   heroe: Heroe = {
     nombre: '',
@@ -31,15 +31,8 @@ export class HeroeComponent implements OnInit {
       }
     });
   }
-
-  ngOnInit() {
-
-
-
-  }
-
+  
   guardar(): void {
-
 
     console.log('heroe ', this.heroe);
 
@@ -59,7 +52,6 @@ export class HeroeComponent implements OnInit {
         error => console.error(error)
       );
     }
-
 
   }
 

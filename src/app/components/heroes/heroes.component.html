@@ -3,9 +3,7 @@
 
 <div class="row">
   <div class="col-md-12 text-right">
-    <button   [routerLink]="['/heroe','nuevo']"
-              class="btn btn-primary"
-              type="button" name="button">
+    <button [routerLink]="['/heroe','nuevo']" class="btn btn-primary" type="button" name="button">
        Nuevo heroe
     </button>
   </div>
@@ -21,30 +19,20 @@
           <th>#</th>
           <th>Nombre</th>
           <th>Casa</th>
+          <th>Bio</th>
           <th>Opciones</th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <th scope="row">1</th>
-          <td>Mark</td>
-          <td>Otto</td>
-          <td>@mdo</td>
-        </tr>
-        <tr>
-          <th scope="row">2</th>
-          <td>Jacob</td>
-          <td>Thornton</td>
-          <td>@fat</td>
-        </tr>
-        <tr>
-          <th scope="row">3</th>
-          <td>Larry</td>
-          <td>the Bird</td>
-          <td>@twitter</td>
+        <tr *ngFor='let key  of heroes | keys ; let i=index'>
+          <th>{{ i }}</th>
+          <td>{{ heroes[key].nombre }}</td>
+          <td>{{ heroes[key].casa }}</td>
+          <td>{{ heroes[key].bio }}</td>
+          <td>{{ key }}</td>
         </tr>
       </tbody>
     </table>
- 
+
   </div>
 </div>

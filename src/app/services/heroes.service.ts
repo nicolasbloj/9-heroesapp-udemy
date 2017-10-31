@@ -1,7 +1,8 @@
-import { Observable } from 'rxjs/Rx';
-import { Headers, Http, RequestOptions, Response } from '@angular/http';
 import { Injectable } from '@angular/core';
+import { Headers, Http, RequestOptions, Response } from '@angular/http';
+import { Observable } from 'rxjs/Rx';
 import 'rxjs/Rx';
+
 import { Heroe } from '../interfaces/heroe.interface';
 
 @Injectable()
@@ -40,9 +41,14 @@ export class HeroesService {
     });
 
   }
+
   getHeroe(key$: string): Observable<any> {
     const url = `${this.heroeURL}/${key$}.json`;
     return this._http.get(url).map(res => res.json());
   }
 
+  listHeroes(): Observable<any> {
+    const url = `${this.heroeURL}.json`;
+    return this._http.get(url).map(res => res.json());
+  }
 }
