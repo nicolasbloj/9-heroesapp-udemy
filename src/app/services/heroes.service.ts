@@ -40,4 +40,9 @@ export class HeroesService {
     });
 
   }
+  getHeroe(key$: string): Observable<any> {
+    const url = `${this.heroeURL}/${key$}.json`;
+    return this._http.get(url).map(res => res.json());
+  }
+
 }
