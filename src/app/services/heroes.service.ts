@@ -8,10 +8,11 @@ import { Heroe } from '../interfaces/heroe.interface';
 export class HeroesService {
 
   heroesURL = 'https://heroesapp-f2da3.firebaseio.com/heroes.json';
+  heroeURL = 'https://heroesapp-f2da3.firebaseio.com/heroes';
 
   constructor(private _http: Http) { }
 
-  nuevoHeroe(heroe: Heroe): Observable<Response> {
+  nuevoHeroe(heroe: Heroe): Observable<any> {
     const body = JSON.stringify(heroe);
     const headers_aux = new Headers({
       'Content-Type': 'application/json'
@@ -19,6 +20,21 @@ export class HeroesService {
     const options = new RequestOptions({ headers: headers_aux });
 
     return this._http.post(this.heroesURL, body, options).map((res) => {
+      console.log('res json ', res.json());
+      return res.json();
+    });
+
+  }
+
+  actualizarHeroe(heroe: Heroe, key$: string): Observable<any> {
+    const body = JSON.stringify(heroe);
+    const headers_aux = new Headers({
+      'Content-Type': 'application/json'
+    });
+    const options = new RequestOptions({ headers: headers_aux });
+
+    const url = `${this.heroeURL}/${key$}.json`;
+    return this._http.put(url, body, options).map((res) => {
       console.log('res json ', res.json());
       return res.json();
     });
