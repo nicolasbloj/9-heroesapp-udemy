@@ -1,3 +1,4 @@
+import { HeroesService } from '../../services/heroes.service';
 import { Component, OnInit } from '@angular/core';
 
 import { Heroe } from '../../interfaces/heroe.interface';
@@ -15,13 +16,14 @@ export class HeroeComponent implements OnInit {
     casa: 'Marvel'
   };
 
-  constructor() { }
+  constructor(private _heroesService: HeroesService) { }
 
   ngOnInit() {
   }
 
   guardar(): void {
-    console.log('heroe', this.heroe);
+    console.log('heroe ', this.heroe);
+    this._heroesService.nuevoHeroe(this.heroe).subscribe(data => console.log('data ', data));
   }
 
 }
