@@ -6,7 +6,7 @@
     <button [routerLink]="['/heroe','nuevo']" class="btn btn-primary" type="button" name="button">
        Nuevo heroe
     </button>
-    <button class="btn btn-outline-danger"> Eliminar Todos </button>
+    <button (click)="eliminarTodos()" class="btn btn-outline-danger"> Eliminar Todos </button>
   </div>
 </div>
 
@@ -25,11 +25,11 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor='let key  of heroes | keys ; let i=index'>
+        <tr *ngFor='let key of heroes | keys ; let i=index'>
           <th>{{ i }}</th>
           <td>{{ heroes[key].nombre }}</td>
           <td>{{ heroes[key].casa }}</td>
-          <td>{{  key  }}</td>
+          <td>{{ heroes[key].bio }}</td>
           <td class="text-right w230">
             <button class="btn btn-outline-success" [routerLink]="['/heroe',key]"> Editar </button>
             <button class="btn btn-outline-danger" (click)="eliminarHeroe(key)"> Eliminar </button>
@@ -38,5 +38,12 @@
       </tbody>
     </table>
 
+    <div *ngIf="(heroes | keys).length === 0 && !loading" class="alert alert-danger" role="alert">
+      <strong>No existen heroes</strong>
+    </div>
+
+    <div *ngIf="loading" class="alert alert-info" role="alert">
+      <strong>Cargando...</strong>
+    </div>
   </div>
 </div>

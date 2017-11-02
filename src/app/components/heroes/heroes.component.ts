@@ -12,7 +12,7 @@ export class HeroesComponent implements OnInit {
   // heroes: Heroe[] = [];
 
   heroes: any;
-
+  loading = true;
   constructor(private _heroesService: HeroesService) { }
 
   ngOnInit() {
@@ -27,9 +27,12 @@ export class HeroesComponent implements OnInit {
         this.heroes.push(h);
       }*/
 
-      this.heroes = data;
-      console.log(this.heroes);
+      setTimeout(() => {
+        this.loading = false;
+        this.heroes = data;
 
+        console.log(this.heroes);
+      }, 1000);
     });
   }
 
@@ -50,4 +53,17 @@ export class HeroesComponent implements OnInit {
     });
   }
 
+  eliminarTodos(): void {
+    // tslint:disable-next-line:forin
+    for (const key$ in this.heroes) {
+      this._heroesService.eliminarHeroe(key$).subscribe(data => {
+        if (data) {
+        } else {
+          delete this.heroes[key$];
+        }
+      });
+    }
+  }
+
 }
+
